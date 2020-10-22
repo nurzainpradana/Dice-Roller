@@ -21,9 +21,23 @@ class MainActivity : AppCompatActivity() {
 
         //Inisialisasi View
         val rollButton: Button = findViewById(R.id.roll_button)
-        val resultText: TextView = findViewById(R.id.result_text)
+        val countUpButton: Button = findViewById(R.id.count_up_button)
 
         rollButton.setOnClickListener { rollDice() }
+        countUpButton.setOnClickListener { countUp() }
+    }
+
+    private fun countUp() {
+           var text = result_text.text.toString()
+        if (text == getString(R.string.hello_world_text)){
+            result_text.text = "1"
+        } else {
+            var numberNow: Int = text.toInt()
+            if (numberNow < 6){
+                numberNow+=1
+                result_text.text = numberNow.toString()
+            }
+        }
     }
 
     private fun rollDice(){
