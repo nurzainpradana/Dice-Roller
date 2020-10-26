@@ -16,6 +16,7 @@ pengguna, selalu gunakan AppCompatActivity
  */
 class MainActivity : AppCompatActivity() {
     lateinit var diceImage : ImageView
+    lateinit var diceImage2 : ImageView
     lateinit var rollButton: Button
     //lateinit var countUpButton: Button
 
@@ -27,9 +28,9 @@ class MainActivity : AppCompatActivity() {
         //val countUpButton: Button = findViewById(R.id.count_up_button)
         rollButton = findViewById(R.id.roll_button)
         diceImage = findViewById(R.id.dice_image)
+        diceImage2 = findViewById(R.id.dice_image2)
 
         rollButton.setOnClickListener { rollDice() }
-        // countUpButton.setOnClickListener { countUp() }
     }
 
     /*
@@ -49,14 +50,15 @@ class MainActivity : AppCompatActivity() {
      */
 
     private fun rollDice(){
-        //Toast.makeText(this, "Button Clicked", Toast.LENGTH_SHORT).show()
-
-        //Variabel untuk mendapatkan angka random dari 1 sampai 6 secara otomatis
+        // function ketika button Roll di klik
+        diceImage.setImageResource(getRandomDiceImage())
+        diceImage2.setImageResource(getRandomDiceImage())
+    }
+    private fun getRandomDiceImage() : Int {
+        // Variabel untuk mendapatkan angka random dari 1 sampai 6 secara otomatis
         val randomInt = (1..6).random()
-        //result_text.text = randomInt.toString()
-        Toast.makeText(this, "Dadu $randomInt", Toast.LENGTH_SHORT).show()
-
-        val drawableResource = when (randomInt){
+        // Mengembalikan nilai drawable
+        return when (randomInt){
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
             3 -> R.drawable.dice_3
@@ -64,7 +66,5 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-
-        diceImage.setImageResource(drawableResource)
     }
 }
